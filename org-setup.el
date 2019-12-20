@@ -9,8 +9,6 @@
 	(kbd "M-j") 'org-forward-element
 	(kbd "M-k") 'org-backward-element
 	(kbd "M-l") 'org-down-element
-        (kbd "M-p") 'org-pomodoro
-        (kbd "M-a") 'org-agenda
 	(kbd "M-H") 'org-promote-subtree
 	(kbd "M-J") 'org-move-subtree-down
 	(kbd "M-K") 'org-move-subtree-up
@@ -61,6 +59,9 @@
   :commands 'org-pomodoro
   :diminish
   :after org)
+
+;; TODO: Capture and agenda setup
+
 
 (provide 'org-setup)
 ;; end of file

@@ -1,6 +1,7 @@
 ;; -------------------------- Package setup ---------------------------
 (require 'package)
 
+
 ;; Package configs
 (setq package-enable-at-startup nil)
 (setq package-archives
@@ -87,11 +88,15 @@ enable-recursive-minibuffers t)
   ;; Highlight line
   (global-linum-mode 1))
 
+;; Show matching parens
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+
 ;;Install fonts
 (use-package all-the-icons)
 
 ;; Font and frame size
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-11"))
+;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-11"))
 (add-to-list 'default-frame-alist '(height . 24))
 (add-to-list 'default-frame-alist '(width . 80))
 
@@ -169,6 +174,8 @@ enable-recursive-minibuffers t)
   "wx"  '(delete-window :which-key "delete window")
   ;; Others
   "at"  '(ansi-term :which-key "open terminal")
+  "ma"  '(org-agenda :which-key "open agenda")
+  "mp"  '(org-pomodoro :which-key "start pomodoro")
   ))
 
 ;; Completion
@@ -199,9 +206,21 @@ enable-recursive-minibuffers t)
 
 ;; Theme
 (use-package doom-themes
-  :ensure t
   :config
-  (load-theme 'doom-one t))
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-one t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+
+(use-package doom-modeline
+      :ensure t
+      :hook (after-init . doom-modeline-mode))
 
 ;; Projectile
 (use-package projectile
@@ -217,12 +236,13 @@ enable-recursive-minibuffers t)
 ;; OrgMode Configs
 (setq org-html-validation-link nil)
 (setq org-todo-keywords
-      '((sequence "TODO" "WORKING" "HOLD" "|" "DONE")))
+      '((sequence "TODO" "WORKING" "HOLD" "NOTE" "|" "DONE")))
 (setq org-todo-keyword-faces
       '(("TODO"    . "blue")
 	("WORKING" . "yellow")
 	("HOLD"    . "red")
-	("DONE"    . "green")))
+	("NOTE"    . "green")
+        ("DONE"    . "pink")))
 
 ;; -------------------------- Startup message ---------------------
 
