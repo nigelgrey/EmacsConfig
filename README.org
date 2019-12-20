@@ -1,0 +1,3 @@
+** EmacsConfig
+ Since Emacs is fantastic, I have started the process of creating my own configuration.
+ All of my Emacs dotfiles are captured here--it is an ongoing work in progress.
