@@ -27,6 +27,20 @@
  (setq org-log-done (quote time))
  (setq org-checkbox-hierarchical-statistics nil)
 
+;; OrgMode Configs
+(setq org-html-validation-link nil)
+(setq org-todo-keywords
+      '((sequence "TODO" "WORKING" "HOLD" "NOTE" "|" "DONE")))
+(setq org-todo-keyword-faces
+      '(("TODO"    . "blue")
+	("WORKING" . "yellow")
+	("HOLD"    . "red")
+	("NOTE"    . "green")
+        ("DONE"    . "pink")))
+
+(setq org-agenda-files '("~/ThoughtsOn/agenda.org"))
+
+
 (use-package evil-org
   :ensure t
   :after org

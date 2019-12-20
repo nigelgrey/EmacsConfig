@@ -96,7 +96,6 @@ enable-recursive-minibuffers t)
 (use-package all-the-icons)
 
 ;; Font and frame size
-;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-11"))
 (add-to-list 'default-frame-alist '(height . 24))
 (add-to-list 'default-frame-alist '(width . 80))
 
@@ -232,17 +231,6 @@ enable-recursive-minibuffers t)
 
 ;; --------------------------- ORG! -------------------------------
 (load-file "~/.emacs.d/org-setup.el")
-
-;; OrgMode Configs
-(setq org-html-validation-link nil)
-(setq org-todo-keywords
-      '((sequence "TODO" "WORKING" "HOLD" "NOTE" "|" "DONE")))
-(setq org-todo-keyword-faces
-      '(("TODO"    . "blue")
-	("WORKING" . "yellow")
-	("HOLD"    . "red")
-	("NOTE"    . "green")
-        ("DONE"    . "pink")))
 
 ;; -------------------------- Startup message ---------------------
 
