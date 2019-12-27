@@ -1,22 +1,3 @@
-;; -------------------------- Package setup ---------------------------
-(require 'package)
-
-
-;; Package configs
-(setq package-enable-at-startup nil)
-(setq package-archives
-	     '(("org"   . "http://orgmode.org/elpa/"      )
-              ( "gnu"   . "http://elpa.gnu.org/packages/" )
-              ( "melpa" . "https://melpa.org/packages/"   )))
-
-;; Set load path
-(package-initialize)
-
-;; Bootstrap `use-package`
-(when (not (package-installed-p 'use-package))
-  (package-refresh-contents)
-  (package-install 'use-package))
-
 ;; --------------------------- Defaults -------------------------------
 ;; Make startup faster by reducing the frequency of garbage
 ;; collection.  The default is 0.8MB.  Measured in bytes.
@@ -36,11 +17,6 @@ custom-file "~/.emacs.d/custom.el"
 ;; Use name in the frame title
 frame-title-format (format "%s's Emacs" (capitalize user-login-name))
 
-;; -------------------------- Uncomment if signature issues -----------
-;;(setq package-check-signature nil)
-;; --------------------------------------------------------------------
-
-
 ;; Do not create lockfiles.
 create-lockfiles nil
 
@@ -57,6 +33,30 @@ auto-save-default nil
 
 ;; Allow commands to be run on minibuffers
 enable-recursive-minibuffers t)
+
+;; -------------------------- Package setup ---------------------------
+(require 'package)
+
+
+;; Package configs
+(setq package-enable-at-startup nil)
+(setq package-archives
+	     '(("org"   . "http://orgmode.org/elpa/"      )
+              ( "gnu"   . "http://elpa.gnu.org/packages/" )
+              ( "melpa" . "https://melpa.org/packages/"   )))
+
+;; Set load path
+(package-initialize)
+
+;; Bootstrap `use-package`
+(when (not (package-installed-p 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+
+;; -------------------------- Uncomment if signature issues -----------
+;;(setq package-check-signature nil)
+;; --------------------------------------------------------------------
 
 ;; Change all yes/no questions to y/n type
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -228,6 +228,17 @@ enable-recursive-minibuffers t)
   (setq projectile-require-project-root nil)
   :config
   (projectile-mode 1))
+
+;; Helm Projectile
+(use-package helm-projectile
+  :ensure t
+  :init
+  (setq helm-projectile-fuzzy-match t)
+  :config
+  (helm-projectile-on))
+
+;; Chess
+(customize-set-variable 'chess-default-display '(chess-ics1 chess-plain))
 
 ;; --------------------------- ORG! -------------------------------
 (load-file "~/.emacs.d/org-setup.el")
