@@ -77,5 +77,5 @@
 ;; TODO: Capture and agenda setup
 
 
-(provide 'org-setup)
+(provide 'setup-org)
 ;; end of file
